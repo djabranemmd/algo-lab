@@ -101,3 +101,15 @@ body {
   bottom: -100px;
   left: 35%;
 }
+
+.card-link {
+  display: inline-block;
+
+  margin-top: 18px;
+
+  color: #7dd3fc;
+
+  text-decoration: none;
+
+  font-weight: 600;
+}
