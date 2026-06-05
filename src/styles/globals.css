@@ -113,3 +113,87 @@ body {
 
   font-weight: 600;
 }
+
+.algorithm-title {
+  text-align: center;
+  font-size: 3rem;
+  font-weight: 800;
+  margin-bottom: 50px;
+}
+
+.bars-wrapper {
+  height: 350px;
+
+  display: flex;
+
+  align-items: flex-end;
+
+  justify-content: center;
+
+  gap: 18px;
+
+  margin-bottom: 40px;
+}
+
+.bar-container {
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  gap: 10px;
+}
+
+.bar {
+  width: 70px;
+
+  border-radius: 18px 18px 6px 6px;
+
+  background:
+    linear-gradient(
+      180deg,
+      #38bdf8,
+      #2563eb
+    );
+}
+
+.controls {
+  display: flex;
+
+  justify-content: center;
+
+  gap: 16px;
+
+  margin-bottom: 20px;
+}
+
+.controls button {
+  border: none;
+
+  cursor: pointer;
+
+  border-radius: 14px;
+
+  padding: 12px 24px;
+
+  background: rgba(
+    255,
+    255,
+    255,
+    0.08
+  );
+
+  color: white;
+}
+
+.step-indicator {
+  text-align: center;
+
+  color: rgba(
+    255,
+    255,
+    255,
+    0.7
+  );
+}
