@@ -1,5 +1,5 @@
 import { useMemo, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 
 import BarVisualizer from "../components/visualizers/BarVisualizer";
 import ControlPanel from "../components/controls/ControlPanel";
@@ -38,6 +38,13 @@ function AlgorithmPage() {
   if (slug !== "bubble-sort") {
     return (
       <section className="container-page">
+        <Link
+          to="/"
+          className="back-button"
+        >
+          ← Back to Home
+        </Link>
+
         <div className="glass-card">
           <h2>
             Coming Soon
@@ -49,6 +56,13 @@ function AlgorithmPage() {
 
   return (
     <section className="container-page">
+      <Link
+        to="/"
+        className="back-button"
+      >
+        ← Back to Home
+      </Link>
+
       <h1 className="algorithm-title">
         Bubble Sort
       </h1>
