@@ -1,10 +1,20 @@
-import { useMemo, useState } from "react";
-import { useParams, Link } from "react-router-dom";
+import {
+  useMemo,
+  useState,
+  useEffect,
+} from "react";
+
+import {
+  useParams,
+  Link,
+} from "react-router-dom";
 
 import BarVisualizer from "../components/visualizers/BarVisualizer";
-import ControlPanel from "../components/controls/ControlPanel";
+import PlaybackControls from "../components/controls/PlaybackControls";
 
-import { generateBubbleSortSteps } from "../algorithms/bubbleSort";
+import {
+  generateBubbleSortSteps,
+} from "../algorithms/bubbleSort";
 
 function AlgorithmPage() {
   const { slug } = useParams();
@@ -22,6 +32,37 @@ function AlgorithmPage() {
   const [currentStep, setCurrentStep] =
     useState(0);
 
+  const [isPlaying, setIsPlaying] =
+    useState(false);
+
+  const [speed, setSpeed] =
+    useState(700);
+
+  useEffect(() => {
+    if (!isPlaying) return;
+
+    const interval = setInterval(() => {
+      setCurrentStep((prev) => {
+        if (
+          prev >=
+          steps.length - 1
+        ) {
+          setIsPlaying(false);
+          return prev;
+        }
+
+        return prev + 1;
+      });
+    }, speed);
+
+    return () =>
+      clearInterval(interval);
+  }, [
+    isPlaying,
+    speed,
+    steps.length,
+  ]);
+
   const nextStep = () => {
     setCurrentStep((prev) =>
       Math.min(
@@ -31,8 +72,15 @@ function AlgorithmPage() {
     );
   };
 
+  const prevStep = () => {
+    setCurrentStep((prev) =>
+      Math.max(prev - 1, 0)
+    );
+  };
+
   const reset = () => {
     setCurrentStep(0);
+    setIsPlaying(false);
   };
 
   if (slug !== "bubble-sort") {
@@ -54,6 +102,9 @@ function AlgorithmPage() {
     );
   }
 
+  const step =
+    steps[currentStep];
+
   return (
     <section className="container-page">
       <Link
@@ -68,15 +119,31 @@ function AlgorithmPage() {
       </h1>
 
       <BarVisualizer
-        values={
-          steps[currentStep]
+        values={step.array}
+        comparing={
+          step.comparing
         }
+        sorted={step.sorted}
       />
 
-      <ControlPanel
+      <PlaybackControls
+        isPlaying={isPlaying}
+        onPlay={() =>
+          setIsPlaying(true)
+        }
+        onPause={() =>
+          setIsPlaying(false)
+        }
         onNext={nextStep}
+        onPrev={prevStep}
         onReset={reset}
+        speed={speed}
+        setSpeed={setSpeed}
       />
+
+      <div className="description-box">
+        {step.description}
+      </div>
 
       <div className="step-indicator">
         Step {currentStep + 1}
