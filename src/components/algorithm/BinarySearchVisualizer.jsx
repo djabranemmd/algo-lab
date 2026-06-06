@@ -39,6 +39,11 @@ function BinarySearchVisualizer() {
     setTarget,
   ] = useState(9);
 
+  const [
+    error,
+    setError,
+  ] = useState("");
+
   const steps = useMemo(() => {
     return generateBinarySearchSteps(
       numbers,
@@ -63,10 +68,22 @@ function BinarySearchVisualizer() {
         Number(targetInput);
 
       if (
+        parsedArray.length < 2
+      ) {
+        setError(
+          "Please enter at least 2 numbers."
+        );
+        return;
+      }
+
+      if (
         parsedArray.some(
           Number.isNaN
         )
       ) {
+        setError(
+          "Array contains invalid values."
+        );
         return;
       }
 
@@ -75,11 +92,18 @@ function BinarySearchVisualizer() {
           parsedTarget
         )
       ) {
+        setError(
+          "Target must be a valid number."
+        );
         return;
       }
 
+      setError("");
+
       setNumbers(
-        parsedArray
+        [...parsedArray].sort(
+          (a, b) => a - b
+        )
       );
 
       setTarget(
@@ -91,7 +115,10 @@ function BinarySearchVisualizer() {
 
   const step =
     steps[
-      playback.currentStep
+      Math.min(
+        playback.currentStep,
+        steps.length - 1
+      )
     ];
 
   return (
@@ -128,6 +155,12 @@ function BinarySearchVisualizer() {
           Generate Search
         </button>
       </div>
+
+      {error && (
+        <div className="error-box">
+          {error}
+        </div>
+      )}
 
       <div className="binary-array">
         {step.array.map(
@@ -198,29 +231,32 @@ function BinarySearchVisualizer() {
         {step.description}
       </div>
 
+      <div className="step-indicator">
+        Step{" "}
+        {playback.currentStep + 1}
+        {" / "}
+        {steps.length}
+      </div>
+
       <div className="complexity-panel">
         <h3>
           Complexity
         </h3>
 
         <p>
-          Best Case:
-          O(1)
+          Best Case: O(1)
         </p>
 
         <p>
-          Average:
-          O(log n)
+          Average: O(log n)
         </p>
 
         <p>
-          Worst:
-          O(log n)
+          Worst: O(log n)
         </p>
 
         <p>
-          Space:
-          O(1)
+          Space: O(1)
         </p>
       </div>
     </>
