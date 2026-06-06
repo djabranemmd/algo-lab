@@ -1,8 +1,6 @@
-import {
-  useMemo,
-  useState,
-  useEffect,
-} from "react";
+import { useMemo, useState } from "react";
+
+import usePlayback from "../../hooks/usePlayback";
 
 import ArrayInput from "./ArrayInput";
 import ExampleArrays from "./ExampleArrays";
@@ -34,21 +32,6 @@ function BubbleSortVisualizer() {
   ]);
 
   const [
-    currentStep,
-    setCurrentStep,
-  ] = useState(0);
-
-  const [
-    isPlaying,
-    setIsPlaying,
-  ] = useState(false);
-
-  const [
-    speed,
-    setSpeed,
-  ] = useState(700);
-
-  const [
     error,
     setError,
   ] = useState("");
@@ -59,38 +42,10 @@ function BubbleSortVisualizer() {
     );
   }, [numbers]);
 
-  useEffect(() => {
-    if (!isPlaying) return;
-
-    const interval =
-      setInterval(() => {
-        setCurrentStep(
-          (prev) => {
-            if (
-              prev >=
-              steps.length - 1
-            ) {
-              setIsPlaying(
-                false
-              );
-
-              return prev;
-            }
-
-            return prev + 1;
-          }
-        );
-      }, speed);
-
-    return () =>
-      clearInterval(
-        interval
-      );
-  }, [
-    isPlaying,
-    speed,
-    steps.length,
-  ]);
+  const playback =
+    usePlayback(
+      steps.length
+    );
 
   const generateArray =
     () => {
@@ -120,38 +75,13 @@ function BubbleSortVisualizer() {
 
       setNumbers(parsed);
 
-      setCurrentStep(0);
-
-      setIsPlaying(false);
+      playback.reset();
     };
 
-  const nextStep = () => {
-    setCurrentStep(
-      (prev) =>
-        Math.min(
-          prev + 1,
-          steps.length - 1
-        )
-    );
-  };
-
-  const prevStep = () => {
-    setCurrentStep(
-      (prev) =>
-        Math.max(
-          prev - 1,
-          0
-        )
-    );
-  };
-
-  const reset = () => {
-    setCurrentStep(0);
-    setIsPlaying(false);
-  };
-
   const step =
-    steps[currentStep];
+    steps[
+      playback.currentStep
+    ];
 
   return (
     <>
@@ -191,34 +121,38 @@ function BubbleSortVisualizer() {
 
       <PlaybackControls
         isPlaying={
-          isPlaying
+          playback.isPlaying
         }
-        onPlay={() =>
-          setIsPlaying(
-            true
-          )
+        onPlay={
+          playback.play
         }
-        onPause={() =>
-          setIsPlaying(
-            false
-          )
+        onPause={
+          playback.pause
         }
-        onNext={nextStep}
-        onPrev={prevStep}
-        onReset={reset}
-        speed={speed}
-        setSpeed={setSpeed}
+        onNext={
+          playback.next
+        }
+        onPrev={
+          playback.prev
+        }
+        onReset={
+          playback.reset
+        }
+        speed={
+          playback.speed
+        }
+        setSpeed={
+          playback.setSpeed
+        }
       />
 
       <div className="description-box">
-        {
-          step.description
-        }
+        {step.description}
       </div>
 
       <div className="step-indicator">
         Step{" "}
-        {currentStep + 1}
+        {playback.currentStep + 1}
         {" / "}
         {steps.length}
       </div>

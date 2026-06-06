@@ -1,8 +1,6 @@
-import {
-  useMemo,
-  useState,
-  useEffect,
-} from "react";
+import { useMemo, useState } from "react";
+
+import usePlayback from "../../hooks/usePlayback";
 
 import ArrayInput from "./ArrayInput";
 import ExampleArrays from "./ExampleArrays";
@@ -33,59 +31,16 @@ function SelectionSortVisualizer() {
     5,
   ]);
 
-  const [
-    currentStep,
-    setCurrentStep,
-  ] = useState(0);
-
-  const [
-    isPlaying,
-    setIsPlaying,
-  ] = useState(false);
-
-  const [
-    speed,
-    setSpeed,
-  ] = useState(700);
-
   const steps = useMemo(() => {
     return generateSelectionSortSteps(
       numbers
     );
   }, [numbers]);
 
-  useEffect(() => {
-    if (!isPlaying) return;
-
-    const interval =
-      setInterval(() => {
-        setCurrentStep(
-          (prev) => {
-            if (
-              prev >=
-              steps.length - 1
-            ) {
-              setIsPlaying(
-                false
-              );
-
-              return prev;
-            }
-
-            return prev + 1;
-          }
-        );
-      }, speed);
-
-    return () =>
-      clearInterval(
-        interval
-      );
-  }, [
-    isPlaying,
-    speed,
-    steps.length,
-  ]);
+  const playback =
+    usePlayback(
+      steps.length
+    );
 
   const generateArray =
     () => {
@@ -105,13 +60,13 @@ function SelectionSortVisualizer() {
 
       setNumbers(parsed);
 
-      setCurrentStep(0);
-
-      setIsPlaying(false);
+      playback.reset();
     };
 
   const step =
-    steps[currentStep];
+    steps[
+      playback.currentStep
+    ];
 
   return (
     <>
@@ -148,42 +103,29 @@ function SelectionSortVisualizer() {
 
       <PlaybackControls
         isPlaying={
-          isPlaying
+          playback.isPlaying
         }
-        onPlay={() =>
-          setIsPlaying(
-            true
-          )
+        onPlay={
+          playback.play
         }
-        onPause={() =>
-          setIsPlaying(
-            false
-          )
+        onPause={
+          playback.pause
         }
-        onNext={() =>
-          setCurrentStep(
-            (prev) =>
-              Math.min(
-                prev + 1,
-                steps.length - 1
-              )
-          )
+        onNext={
+          playback.next
         }
-        onPrev={() =>
-          setCurrentStep(
-            (prev) =>
-              Math.max(
-                prev - 1,
-                0
-              )
-          )
+        onPrev={
+          playback.prev
         }
-        onReset={() => {
-          setCurrentStep(0);
-          setIsPlaying(false);
-        }}
-        speed={speed}
-        setSpeed={setSpeed}
+        onReset={
+          playback.reset
+        }
+        speed={
+          playback.speed
+        }
+        setSpeed={
+          playback.setSpeed
+        }
       />
 
       <div className="description-box">
@@ -191,7 +133,8 @@ function SelectionSortVisualizer() {
       </div>
 
       <div className="step-indicator">
-        Step {currentStep + 1}
+        Step{" "}
+        {playback.currentStep + 1}
         {" / "}
         {steps.length}
       </div>
