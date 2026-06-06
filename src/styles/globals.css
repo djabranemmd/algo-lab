@@ -353,3 +353,10 @@ body {
   margin-bottom: 20px;
   color: #f87171;
 }
+
+.bar-minimum {
+  background:
+    linear-gradient(180deg,
+      #a855f7,
+      #7e22ce);
+}

@@ -1,6 +1,7 @@
 import { Link, useParams } from "react-router-dom";
 
 import BubbleSortVisualizer from "../components/algorithm/BubbleSortVisualizer";
+import SelectionSortVisualizer from "../components/algorithm/SelectionSortVisualizer";
 
 function AlgorithmPage() {
   const { slug } = useParams();
@@ -15,7 +16,7 @@ function AlgorithmPage() {
       </Link>
 
       {slug ===
-      "bubble-sort" ? (
+        "bubble-sort" && (
         <>
           <h1 className="algorithm-title">
             Bubble Sort
@@ -23,7 +24,23 @@ function AlgorithmPage() {
 
           <BubbleSortVisualizer />
         </>
-      ) : (
+      )}
+
+      {slug ===
+        "selection-sort" && (
+        <>
+          <h1 className="algorithm-title">
+            Selection Sort
+          </h1>
+
+          <SelectionSortVisualizer />
+        </>
+      )}
+
+      {![
+        "bubble-sort",
+        "selection-sort",
+      ].includes(slug) && (
         <div className="glass-card">
           <h2>
             Coming Soon

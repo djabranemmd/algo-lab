@@ -2,8 +2,9 @@ import { motion } from "framer-motion";
 
 function BarVisualizer({
   values,
-  comparing,
-  sorted,
+  comparing = [],
+  sorted = [],
+  minimum = null,
 }) {
   const maxValue = Math.max(...values);
 
@@ -14,6 +15,10 @@ function BarVisualizer({
 
         if (sorted.includes(index)) {
           className += " bar-sorted";
+        } else if (
+          minimum === index
+        ) {
+          className += " bar-minimum";
         } else if (
           comparing.includes(index)
         ) {
