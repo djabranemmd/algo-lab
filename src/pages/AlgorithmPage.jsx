@@ -3,9 +3,15 @@ import { Link, useParams } from "react-router-dom";
 import BubbleSortVisualizer from "../components/algorithm/BubbleSortVisualizer";
 import SelectionSortVisualizer from "../components/algorithm/SelectionSortVisualizer";
 import BinarySearchVisualizer from "../components/algorithm/BinarySearchVisualizer";
+import AlgorithmInfo from "../components/algorithm/AlgorithmInfo";
+
+import { algorithmDetails } from "../data/algorithmDetails";
 
 function AlgorithmPage() {
   const { slug } = useParams();
+
+  const algorithm =
+    algorithmDetails[slug];
 
   return (
     <section className="container-page">
@@ -16,34 +22,30 @@ function AlgorithmPage() {
         ← Back to Home
       </Link>
 
+      {algorithm && (
+        <>
+          <h1 className="algorithm-title">
+            {algorithm.title}
+          </h1>
+
+          <AlgorithmInfo
+            data={algorithm}
+          />
+        </>
+      )}
+
       {slug === "bubble-sort" && (
-        <>
-          <h1 className="algorithm-title">
-            Bubble Sort
-          </h1>
-
-          <BubbleSortVisualizer />
-        </>
+        <BubbleSortVisualizer />
       )}
 
-      {slug === "selection-sort" && (
-        <>
-          <h1 className="algorithm-title">
-            Selection Sort
-          </h1>
-
-          <SelectionSortVisualizer />
-        </>
+      {slug ===
+        "selection-sort" && (
+        <SelectionSortVisualizer />
       )}
 
-      {slug === "binary-search" && (
-        <>
-          <h1 className="algorithm-title">
-            Binary Search
-          </h1>
-
-          <BinarySearchVisualizer />
-        </>
+      {slug ===
+        "binary-search" && (
+        <BinarySearchVisualizer />
       )}
 
       {![
