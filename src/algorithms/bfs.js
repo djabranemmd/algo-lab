@@ -13,6 +13,8 @@ export function generateBFSSteps() {
   const visited =
     new Set();
 
+  const traversal = [];
+
   const steps = [];
 
   while (queue.length) {
@@ -27,13 +29,23 @@ export function generateBFSSteps() {
 
     visited.add(current);
 
+    traversal.push(current);
+
     steps.push({
       current,
+
       queue: [...queue],
+
       visited: [
         ...visited,
       ],
-      description: `Visiting ${current}`,
+
+      traversal: [
+        ...traversal,
+      ],
+
+      description:
+        `Visiting ${current}`,
     });
 
     graph[current].forEach(
@@ -52,11 +64,19 @@ export function generateBFSSteps() {
 
     steps.push({
       current,
+
       queue: [...queue],
+
       visited: [
         ...visited,
       ],
-      description: `Added neighbors of ${current} to queue`,
+
+      traversal: [
+        ...traversal,
+      ],
+
+      description:
+        `Added neighbors of ${current} to queue`,
     });
   }
 

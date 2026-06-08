@@ -656,3 +656,22 @@ body {
 
   text-align: center;
 }
+
+.traversal-box {
+  max-width: 700px;
+
+  margin: 20px auto;
+
+  padding: 16px;
+
+  border-radius: 16px;
+
+  background: rgba(59,
+      130,
+      246,
+      0.1);
+
+  text-align: center;
+
+  font-weight: 600;
+}

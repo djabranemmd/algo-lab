@@ -30,7 +30,7 @@ export const algorithms = [
     title: "BFS",
     slug: "bfs",
     category: "Graph",
-    available: false,
+    available: true,
     description:
       "Breadth First Search traversal.",
   },

@@ -157,6 +157,14 @@ function BFSVisualizer() {
           : "Empty"}
       </div>
 
+          <div className="traversal-box">
+  Traversal Order:
+  {" "}
+  {step.traversal.join(
+    " → "
+  )}
+          </div>
+          
       <PlaybackControls
         isPlaying={
           playback.isPlaying
