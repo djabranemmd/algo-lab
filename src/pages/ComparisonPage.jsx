@@ -1,4 +1,9 @@
-import { useMemo, useState } from "react";
+import {
+  useMemo,
+  useState,
+} from "react";
+
+import usePlayback from "../hooks/usePlayback";
 
 import {
   generateBubbleSortSteps,
@@ -9,6 +14,7 @@ import {
 } from "../algorithms/selectionSort";
 
 import BarVisualizer from "../components/visualizers/BarVisualizer";
+import PlaybackControls from "../components/controls/PlaybackControls";
 
 function ComparisonPage() {
   const [
@@ -43,6 +49,17 @@ function ComparisonPage() {
       );
     }, [numbers]);
 
+  const maxSteps =
+    Math.max(
+      bubble.steps.length,
+      selection.steps.length
+    );
+
+  const playback =
+    usePlayback(
+      maxSteps
+    );
+
   const generateArray =
     () => {
       const parsed =
@@ -60,12 +77,32 @@ function ComparisonPage() {
       }
 
       setNumbers(parsed);
+
+      playback.reset();
     };
+
+  const bubbleStep =
+    bubble.steps[
+      Math.min(
+        playback.currentStep,
+        bubble.steps.length -
+          1
+      )
+    ];
+
+  const selectionStep =
+    selection.steps[
+      Math.min(
+        playback.currentStep,
+        selection.steps.length -
+          1
+      )
+    ];
 
   return (
     <section className="container-page">
       <h1 className="algorithm-title">
-        Algorithm Comparison
+        Live Algorithm Comparison
       </h1>
 
       <div className="comparison-input">
@@ -85,9 +122,36 @@ function ComparisonPage() {
             generateArray
           }
         >
-          Compare
+          Generate
         </button>
       </div>
+
+      <PlaybackControls
+        isPlaying={
+          playback.isPlaying
+        }
+        onPlay={
+          playback.play
+        }
+        onPause={
+          playback.pause
+        }
+        onNext={
+          playback.next
+        }
+        onPrev={
+          playback.prev
+        }
+        onReset={
+          playback.reset
+        }
+        speed={
+          playback.speed
+        }
+        setSpeed={
+          playback.setSpeed
+        }
+      />
 
       <div className="comparison-grid">
         <div className="glass-card">
@@ -97,22 +161,21 @@ function ComparisonPage() {
 
           <BarVisualizer
             values={
-              bubble.steps[
-                bubble.steps
-                  .length - 1
-              ].array
+              bubbleStep.array
             }
-            comparing={[]}
+            comparing={
+              bubbleStep.comparing
+            }
             sorted={
-              bubble.steps[
-                bubble.steps
-                  .length - 1
-              ].array.map(
-                (_, index) =>
-                  index
-              )
+              bubbleStep.sorted
             }
           />
+
+          <div className="description-box">
+            {
+              bubbleStep.description
+            }
+          </div>
 
           <div className="stats-panel">
             <div>
@@ -142,22 +205,24 @@ function ComparisonPage() {
 
           <BarVisualizer
             values={
-              selection.steps[
-                selection.steps
-                  .length - 1
-              ].array
+              selectionStep.array
             }
-            comparing={[]}
+            comparing={
+              selectionStep.comparing
+            }
+            minimum={
+              selectionStep.minimum
+            }
             sorted={
-              selection.steps[
-                selection.steps
-                  .length - 1
-              ].array.map(
-                (_, index) =>
-                  index
-              )
+              selectionStep.sorted
             }
           />
+
+          <div className="description-box">
+            {
+              selectionStep.description
+            }
+          </div>
 
           <div className="stats-panel">
             <div>
@@ -179,6 +244,13 @@ function ComparisonPage() {
             </div>
           </div>
         </div>
+      </div>
+
+      <div className="step-indicator">
+        Global Step{" "}
+        {playback.currentStep + 1}
+        {" / "}
+        {maxSteps}
       </div>
     </section>
   );
