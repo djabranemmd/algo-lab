@@ -43,4 +43,16 @@ export const algorithms = [
     description:
       "Depth First Search traversal.",
   },
+
+  {
+    title:
+      "Algorithm Comparison",
+    slug: "comparison",
+    category: "Analysis",
+    available: true,
+    externalPath:
+      "/comparison",
+    description:
+      "Compare sorting algorithms side by side.",
+  },
 ];

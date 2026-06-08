@@ -696,3 +696,27 @@ body {
       255,
       0.05);
 }
+
+.comparison-input {
+  display: flex;
+
+  justify-content: center;
+
+  gap: 12px;
+
+  margin-bottom: 32px;
+
+  flex-wrap: wrap;
+}
+
+.comparison-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(
+      auto-fit,
+      minmax(420px, 1fr)
+    );
+
+  gap: 24px;
+}
