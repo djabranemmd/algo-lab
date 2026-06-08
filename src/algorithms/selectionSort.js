@@ -1,27 +1,40 @@
-export function generateSelectionSortSteps(inputArray) {
+export function generateSelectionSortSteps(
+  inputArray
+) {
   const arr = [...inputArray];
 
   const steps = [];
+
+  let comparisons = 0;
+
+  let swaps = 0;
 
   steps.push({
     array: [...arr],
     comparing: [],
     minimum: null,
     sorted: [],
-    description: "Initial array",
+    description:
+      "Initial array",
   });
 
-  for (let i = 0; i < arr.length; i++) {
+  for (
+    let i = 0;
+    i < arr.length;
+    i++
+  ) {
     let minIndex = i;
 
     steps.push({
       array: [...arr],
       comparing: [],
-      minimum: minIndex,
-      sorted: Array.from(
-        { length: i },
-        (_, idx) => idx
-      ),
+      minimum:
+        minIndex,
+      sorted:
+        Array.from(
+          { length: i },
+          (_, idx) => idx
+        ),
       description: `Current minimum is ${arr[minIndex]}`,
     });
 
@@ -30,34 +43,55 @@ export function generateSelectionSortSteps(inputArray) {
       j < arr.length;
       j++
     ) {
+      comparisons++;
+
       steps.push({
         array: [...arr],
         comparing: [j],
-        minimum: minIndex,
-        sorted: Array.from(
-          { length: i },
-          (_, idx) => idx
-        ),
+        minimum:
+          minIndex,
+        sorted:
+          Array.from(
+            { length: i },
+            (_, idx) => idx
+          ),
         description: `Comparing ${arr[j]} with current minimum ${arr[minIndex]}`,
       });
 
-      if (arr[j] < arr[minIndex]) {
+      if (
+        arr[j] <
+        arr[minIndex]
+      ) {
         minIndex = j;
 
         steps.push({
           array: [...arr],
           comparing: [],
-          minimum: minIndex,
-          sorted: Array.from(
-            { length: i },
-            (_, idx) => idx
-          ),
+          minimum:
+            minIndex,
+          sorted:
+            Array.from(
+              {
+                length: i,
+              },
+              (_, idx) =>
+                idx
+            ),
           description: `New minimum found: ${arr[minIndex]}`,
         });
       }
     }
 
-    [arr[i], arr[minIndex]] = [
+    if (
+      minIndex !== i
+    ) {
+      swaps++;
+    }
+
+    [
+      arr[i],
+      arr[minIndex],
+    ] = [
       arr[minIndex],
       arr[i],
     ];
@@ -66,10 +100,13 @@ export function generateSelectionSortSteps(inputArray) {
       array: [...arr],
       comparing: [],
       minimum: null,
-      sorted: Array.from(
-        { length: i + 1 },
-        (_, idx) => idx
-      ),
+      sorted:
+        Array.from(
+          {
+            length: i + 1,
+          },
+          (_, idx) => idx
+        ),
       description: `Placed ${arr[i]} in its final position`,
     });
   }
@@ -85,5 +122,12 @@ export function generateSelectionSortSteps(inputArray) {
       "Array sorted successfully",
   });
 
-  return steps;
+  return {
+    steps,
+
+    stats: {
+      comparisons,
+      swaps,
+    },
+  };
 }

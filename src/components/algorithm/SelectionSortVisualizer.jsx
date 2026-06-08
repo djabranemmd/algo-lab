@@ -31,11 +31,14 @@ function SelectionSortVisualizer() {
     5,
   ]);
 
-  const steps = useMemo(() => {
-    return generateSelectionSortSteps(
-      numbers
-    );
-  }, [numbers]);
+  const {
+  steps,
+  stats,
+} = useMemo(() => {
+  return generateSelectionSortSteps(
+    numbers
+  );
+}, [numbers]);
 
   const playback =
     usePlayback(
@@ -138,6 +141,20 @@ function SelectionSortVisualizer() {
         {" / "}
         {steps.length}
       </div>
+
+      <div className="stats-panel">
+  <div>
+    Comparisons:
+    {" "}
+    {stats.comparisons}
+  </div>
+
+  <div>
+    Swaps:
+    {" "}
+    {stats.swaps}
+  </div>
+</div>
     </>
   );
 }

@@ -1,17 +1,35 @@
-export function generateBubbleSortSteps(inputArray) {
+export function generateBubbleSortSteps(
+  inputArray
+) {
   const arr = [...inputArray];
 
   const steps = [];
+
+  let comparisons = 0;
+
+  let swaps = 0;
 
   steps.push({
     array: [...arr],
     comparing: [],
     sorted: [],
-    description: "Initial array",
+    description:
+      "Initial array",
   });
 
-  for (let i = 0; i < arr.length; i++) {
-    for (let j = 0; j < arr.length - i - 1; j++) {
+  for (
+    let i = 0;
+    i < arr.length;
+    i++
+  ) {
+    for (
+      let j = 0;
+      j <
+      arr.length - i - 1;
+      j++
+    ) {
+      comparisons++;
+
       steps.push({
         array: [...arr],
         comparing: [j, j + 1],
@@ -19,45 +37,73 @@ export function generateBubbleSortSteps(inputArray) {
         description: `Comparing ${arr[j]} and ${arr[j + 1]}`,
       });
 
-      if (arr[j] > arr[j + 1]) {
-        [arr[j], arr[j + 1]] = [
+      if (
+        arr[j] >
+        arr[j + 1]
+      ) {
+        swaps++;
+
+        [
+          arr[j],
+          arr[j + 1],
+        ] = [
           arr[j + 1],
           arr[j],
         ];
 
         steps.push({
           array: [...arr],
-          comparing: [j, j + 1],
+          comparing: [
+            j,
+            j + 1,
+          ],
           sorted: [],
           description: `Swapped ${arr[j + 1]} and ${arr[j]}`,
         });
       }
     }
 
-    const sortedIndexes = [];
+    const sortedIndexes =
+      [];
 
     for (
-      let k = arr.length - 1;
-      k >= arr.length - i - 1;
+      let k =
+        arr.length - 1;
+      k >=
+      arr.length - i - 1;
       k--
     ) {
-      sortedIndexes.push(k);
+      sortedIndexes.push(
+        k
+      );
     }
 
     steps.push({
       array: [...arr],
       comparing: [],
-      sorted: sortedIndexes,
-      description: "Element placed in final position",
+      sorted:
+        sortedIndexes,
+      description:
+        "Element placed in final position",
     });
   }
 
   steps.push({
     array: [...arr],
     comparing: [],
-    sorted: arr.map((_, index) => index),
-    description: "Array sorted successfully",
+    sorted: arr.map(
+      (_, index) => index
+    ),
+    description:
+      "Array sorted successfully",
   });
 
-  return steps;
+  return {
+    steps,
+
+    stats: {
+      comparisons,
+      swaps,
+    },
+  };
 }

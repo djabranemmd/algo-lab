@@ -36,11 +36,14 @@ function BubbleSortVisualizer() {
     setError,
   ] = useState("");
 
-  const steps = useMemo(() => {
-    return generateBubbleSortSteps(
-      numbers
-    );
-  }, [numbers]);
+ const {
+  steps,
+  stats,
+} = useMemo(() => {
+  return generateBubbleSortSteps(
+    numbers
+  );
+}, [numbers]);
 
   const playback =
     usePlayback(
@@ -156,6 +159,20 @@ function BubbleSortVisualizer() {
         {" / "}
         {steps.length}
       </div>
+      
+      <div className="stats-panel">
+  <div>
+    Comparisons:
+    {" "}
+    {stats.comparisons}
+  </div>
+
+  <div>
+    Swaps:
+    {" "}
+    {stats.swaps}
+  </div>
+</div>
     </>
   );
 }
