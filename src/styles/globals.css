@@ -1,5 +1,64 @@
 @import "tailwindcss";
 
+:root {
+  --bg-primary: #060816;
+  --bg-secondary: rgba(255, 255, 255, 0.05);
+
+  --card-bg: rgba(255, 255, 255, 0.05);
+
+  --border-color: rgba(255, 255, 255, 0.08);
+
+  --text-primary: #ffffff;
+
+  --text-secondary: rgba(255,
+      255,
+      255,
+      0.7);
+
+  --input-bg: rgba(255,
+      255,
+      255,
+      0.05);
+
+  --button-bg: rgba(255,
+      255,
+      255,
+      0.08);
+}
+
+body.theme-light {
+  --bg-primary: #f7f9fc;
+
+  --bg-secondary: rgba(255,
+      255,
+      255,
+      0.85);
+
+  --card-bg: rgba(255,
+      255,
+      255,
+      0.85);
+
+  --border-color: rgba(0,
+      0,
+      0,
+      0.08);
+
+  --text-primary: #111827;
+
+  --text-secondary: #4b5563;
+
+  --input-bg: rgba(255,
+      255,
+      255,
+      0.95);
+
+  --button-bg: rgba(0,
+      0,
+      0,
+      0.05);
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -13,9 +72,16 @@ body,
 }
 
 body {
-  background: #060816;
-  color: white;
-  font-family: Inter, sans-serif;
+  background: var(--bg-primary);
+
+  color: var(--text-primary);
+
+  font-family: Inter,
+    sans-serif;
+
+  transition:
+    background 0.3s ease,
+    color 0.3s ease;
 }
 
 .container-page {
@@ -48,9 +114,9 @@ body {
 
 .glass-card {
   backdrop-filter: blur(24px);
-  background: rgba(255, 255, 255, .05);
+  background: var(--card-bg);
 
-  border: 1px solid rgba(255, 255, 255, .08);
+  border: 1px solid var(--border-color);
 
   border-radius: 24px;
 
@@ -65,7 +131,7 @@ body {
 }
 
 .glass-card p {
-  color: rgba(255, 255, 255, .7);
+  color: var(--text-secondary);
   line-height: 1.7;
 }
 
@@ -173,12 +239,9 @@ body {
 
   padding: 12px 24px;
 
-  background: rgba(255,
-      255,
-      255,
-      0.08);
+  background: var(--button-bg);
 
-  color: white;
+  color: var(--text-primary);
 }
 
 .step-indicator {
@@ -284,15 +347,9 @@ body {
 
   border-radius: 18px;
 
-  background: rgba(255,
-      255,
-      255,
-      0.05);
+  background: var(--card-bg);
 
-  border: 1px solid rgba(255,
-      255,
-      255,
-      0.08);
+  border: 1px solid var(--border-color);
 }
 
 .array-input-card {
@@ -313,15 +370,11 @@ body {
 .array-input {
   padding: 14px;
   border-radius: 16px;
-  border: 1px solid rgba(255,
-      255,
-      255,
-      0.08);
+  background: var(--input-bg);
 
-  background: rgba(255,
-      255,
-      255,
-      0.05);
+  color: var(--text-primary);
+
+  border: 1px solid var(--border-color);
 
   color: white;
 }
