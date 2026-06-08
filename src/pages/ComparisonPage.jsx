@@ -3,6 +3,8 @@ import {
   useState,
 } from "react";
 
+import { Link } from "react-router-dom";
+
 import usePlayback from "../hooks/usePlayback";
 
 import {
@@ -100,7 +102,14 @@ function ComparisonPage() {
     ];
 
   return (
-    <section className="container-page">
+      <section className="container-page">
+          <Link
+  to="/"
+  className="back-button"
+>
+  ← Back to Home
+          </Link>
+          
       <h1 className="algorithm-title">
         Live Algorithm Comparison
       </h1>
