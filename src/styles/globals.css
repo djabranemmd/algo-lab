@@ -713,10 +713,8 @@ body {
   display: grid;
 
   grid-template-columns:
-    repeat(
-      auto-fit,
-      minmax(420px, 1fr)
-    );
+    repeat(auto-fit,
+      minmax(420px, 1fr));
 
   gap: 24px;
 }
@@ -725,12 +723,46 @@ body {
   display: grid;
 
   grid-template-columns:
-    repeat(
-      auto-fit,
-      minmax(450px, 1fr)
-    );
+    repeat(auto-fit,
+      minmax(450px, 1fr));
 
   gap: 24px;
 
   margin-top: 30px;
+}
+
+.theme-toggle {
+  position: fixed;
+
+  top: 24px;
+  right: 24px;
+
+  z-index: 999;
+
+  border: none;
+
+  cursor: pointer;
+
+  padding: 12px 18px;
+
+  border-radius: 999px;
+
+  backdrop-filter: blur(20px);
+
+  background: rgba(255,
+      255,
+      255,
+      0.08);
+
+  color: inherit;
+}
+
+body.theme-dark {
+  background: #060816;
+  color: white;
+}
+
+body.theme-light {
+  background: #f5f7fb;
+  color: #111827;
 }
