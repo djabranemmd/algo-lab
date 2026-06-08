@@ -4,12 +4,12 @@ import GraphVisualizer from "../visualizers/GraphVisualizer";
 import usePlayback from "../../hooks/usePlayback";
 
 import {
-  generateBFSSteps,
-} from "../../algorithms/bfs";
+  generateDFSSteps,
+} from "../../algorithms/dfs";
 
-function BFSVisualizer() {
+function DFSVisualizer() {
   const steps =
-    generateBFSSteps();
+    generateDFSSteps();
 
   const playback =
     usePlayback(
@@ -31,16 +31,6 @@ function BFSVisualizer() {
           step.visited
         }
       />
-
-      <div className="queue-box">
-        Queue:
-        {" "}
-        {step.queue.length
-          ? step.queue.join(
-              " → "
-            )
-          : "Empty"}
-      </div>
 
       <div className="traversal-box">
         Traversal Order:
@@ -91,4 +81,4 @@ function BFSVisualizer() {
   );
 }
 
-export default BFSVisualizer;
+export default DFSVisualizer;

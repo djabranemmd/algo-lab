@@ -39,7 +39,7 @@ export const algorithms = [
     title: "DFS",
     slug: "dfs",
     category: "Graph",
-    available: false,
+    available: true,
     description:
       "Depth First Search traversal.",
   },

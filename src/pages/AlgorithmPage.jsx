@@ -4,6 +4,7 @@ import BubbleSortVisualizer from "../components/algorithm/BubbleSortVisualizer";
 import SelectionSortVisualizer from "../components/algorithm/SelectionSortVisualizer";
 import BinarySearchVisualizer from "../components/algorithm/BinarySearchVisualizer";
 import BFSVisualizer from "../components/algorithm/BFSVisualizer";
+import DFSVisualizer from "../components/algorithm/DFSVisualizer";
 
 import AlgorithmInfo from "../components/algorithm/AlgorithmInfo";
 
@@ -54,11 +55,16 @@ function AlgorithmPage() {
         <BFSVisualizer />
       )}
 
+      {slug === "dfs" && (
+        <DFSVisualizer />
+      )}
+
       {![
         "bubble-sort",
         "selection-sort",
         "binary-search",
         "bfs",
+        "dfs",
       ].includes(slug) && (
         <div className="glass-card">
           <h2>
