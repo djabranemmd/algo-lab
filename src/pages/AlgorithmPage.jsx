@@ -3,6 +3,8 @@ import { Link, useParams } from "react-router-dom";
 import BubbleSortVisualizer from "../components/algorithm/BubbleSortVisualizer";
 import SelectionSortVisualizer from "../components/algorithm/SelectionSortVisualizer";
 import BinarySearchVisualizer from "../components/algorithm/BinarySearchVisualizer";
+import BFSVisualizer from "../components/algorithm/BFSVisualizer";
+
 import AlgorithmInfo from "../components/algorithm/AlgorithmInfo";
 
 import { algorithmDetails } from "../data/algorithmDetails";
@@ -48,10 +50,15 @@ function AlgorithmPage() {
         <BinarySearchVisualizer />
       )}
 
+      {slug === "bfs" && (
+        <BFSVisualizer />
+      )}
+
       {![
         "bubble-sort",
         "selection-sort",
         "binary-search",
+        "bfs",
       ].includes(slug) && (
         <div className="glass-card">
           <h2>

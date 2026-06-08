@@ -60,4 +60,46 @@ export const algorithmDetails = {
       "Search engines",
     ],
   },
+
+  "bfs": {
+    title: "Breadth First Search",
+
+    overview:
+      "Breadth First Search explores a graph level by level using a queue.",
+
+    timeComplexity: {
+      best: "O(V + E)",
+      average: "O(V + E)",
+      worst: "O(V + E)",
+    },
+
+    spaceComplexity: "O(V)",
+
+    useCases: [
+      "Shortest path in unweighted graphs",
+      "Web crawling",
+      "Social network analysis",
+    ],
+  },
+
+  "dfs": {
+    title: "Depth First Search",
+
+    overview:
+      "Depth First Search explores as far as possible before backtracking.",
+
+    timeComplexity: {
+      best: "O(V + E)",
+      average: "O(V + E)",
+      worst: "O(V + E)",
+    },
+
+    spaceComplexity: "O(V)",
+
+    useCases: [
+      "Maze solving",
+      "Cycle detection",
+      "Topological sorting",
+    ],
+  },
 };

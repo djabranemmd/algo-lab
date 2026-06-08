@@ -575,3 +575,84 @@ body {
 .use-cases-list li {
   margin-bottom: 8px;
 }
+
+.graph-wrapper {
+  position: relative;
+
+  width: 600px;
+  height: 350px;
+
+  margin: 40px auto;
+}
+
+.graph-lines {
+  position: absolute;
+}
+
+.graph-lines line {
+  stroke: rgba(255,
+      255,
+      255,
+      0.3);
+
+  stroke-width: 3;
+}
+
+.graph-node {
+  position: absolute;
+
+  width: 60px;
+  height: 60px;
+
+  transform:
+    translate(-50%,
+      -50%);
+
+  border-radius: 50%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-weight: 700;
+
+  background: rgba(255,
+      255,
+      255,
+      0.08);
+
+  border: 1px solid rgba(255,
+      255,
+      255,
+      0.1);
+
+  transition: 0.3s;
+}
+
+.graph-visited {
+  background: #3b82f6;
+}
+
+.graph-current {
+  background: #22c55e;
+  transform:
+    translate(-50%,
+      -50%) scale(1.1);
+}
+
+.queue-box {
+  max-width: 700px;
+
+  margin: 20px auto;
+
+  padding: 16px;
+
+  border-radius: 16px;
+
+  background: rgba(255,
+      255,
+      255,
+      0.05);
+
+  text-align: center;
+}
