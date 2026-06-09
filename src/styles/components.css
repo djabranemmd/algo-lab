@@ -1,0 +1,277 @@
+.cards-grid {
+    display: grid;
+    gap: 24px;
+
+    grid-template-columns:
+        repeat(auto-fit,
+            minmax(250px, 1fr));
+}
+
+.glass-card {
+    backdrop-filter: blur(24px);
+
+    background: var(--card-bg);
+
+    border: 1px solid var(--border-color);
+
+    border-radius: 24px;
+
+    padding: 28px;
+
+    transition: all 0.3s ease;
+}
+
+.glass-card:hover {
+    transform: translateY(-4px);
+}
+
+.glass-card h3 {
+    font-size: 1.4rem;
+    margin-bottom: 12px;
+}
+
+.glass-card p {
+    color: var(--text-secondary);
+    line-height: 1.7;
+}
+
+.card-link {
+    display: inline-block;
+
+    margin-top: 18px;
+
+    color: #7dd3fc;
+
+    text-decoration: none;
+
+    font-weight: 600;
+}
+
+.category-badge {
+    padding: 6px 12px;
+
+    border-radius: 999px;
+
+    background:
+        rgba(255, 255, 255, 0.08);
+
+    font-size: 12px;
+}
+
+.soon-badge {
+    padding: 6px 12px;
+
+    border-radius: 999px;
+
+    background:
+        rgba(168, 85, 247, 0.2);
+}
+
+.card-top {
+    display: flex;
+    justify-content: space-between;
+
+    margin-bottom: 20px;
+}
+
+.disabled-link {
+    opacity: 0.5;
+}
+
+.controls {
+    display: flex;
+
+    justify-content: center;
+
+    gap: 16px;
+
+    margin-bottom: 20px;
+}
+
+.controls button {
+    border: none;
+    cursor: pointer;
+
+    border-radius: 14px;
+
+    padding: 12px 24px;
+
+    background: var(--button-bg);
+
+    color: var(--text-primary);
+}
+
+.controls-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+}
+
+.speed-control {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.speed-control select {
+    background: var(--input-bg);
+
+    color: var(--text-primary);
+
+    border: 1px solid var(--border-color);
+
+    padding: 8px 12px;
+
+    border-radius: 10px;
+}
+
+.array-input-card {
+    display: flex;
+    flex-direction: column;
+
+    gap: 14px;
+
+    max-width: 700px;
+
+    margin: 0 auto 30px;
+}
+
+.input-label {
+    color: var(--text-secondary);
+}
+
+.array-input {
+    padding: 14px;
+
+    border-radius: 16px;
+
+    background: var(--input-bg);
+
+    color: var(--text-primary);
+
+    border: 1px solid var(--border-color);
+
+    transition: all 0.3s ease;
+}
+
+.array-input::placeholder {
+    color: var(--text-secondary);
+}
+
+.array-input:focus {
+    outline: none;
+
+    border-color: #3b82f6;
+
+    box-shadow:
+        0 0 0 3px rgba(59, 130, 246, 0.2);
+}
+
+.generate-btn {
+    padding: 14px;
+
+    border-radius: 16px;
+
+    border: none;
+
+    cursor: pointer;
+}
+
+.examples-wrapper {
+    display: flex;
+    gap: 12px;
+
+    justify-content: center;
+
+    margin-bottom: 30px;
+
+    flex-wrap: wrap;
+}
+
+.examples-wrapper button,
+.generate-btn,
+.controls button {
+    transition: all 0.25s ease;
+}
+
+.examples-wrapper button:hover,
+.generate-btn:hover,
+.controls button:hover {
+    transform: translateY(-2px);
+    background: var(--button-bg);
+}
+
+.examples-wrapper button {
+    padding: 10px 18px;
+
+    border-radius: 12px;
+
+    border: none;
+
+    cursor: pointer;
+}
+
+.error-box {
+    text-align: center;
+
+    margin-bottom: 20px;
+
+    color: #f87171;
+}
+
+.description-box {
+    max-width: 700px;
+
+    margin: 30px auto;
+
+    text-align: center;
+
+    padding: 20px;
+
+    border-radius: 18px;
+
+    background: var(--card-bg);
+
+    border: 1px solid var(--border-color);
+}
+
+.step-indicator {
+    text-align: center;
+
+    color: var(--text-secondary);
+}
+
+.search-input {
+    width: 100%;
+    max-width: 500px;
+
+    margin: 30px auto;
+
+    display: block;
+
+    padding: 16px;
+
+    border-radius: 18px;
+
+    border: 1px solid var(--border-color);
+
+    background: var(--card-bg);
+
+    color: var(--text-primary);
+
+    transition: all 0.25s ease;
+}
+
+.search-input::placeholder {
+    color: var(--text-secondary);
+}
+
+.search-input:focus {
+    outline: none;
+
+    border-color: var(--accent-color);
+
+    box-shadow:
+        0 0 0 4px rgba(59, 130, 246, 0.15);
+}
