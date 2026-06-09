@@ -6,7 +6,7 @@ import {
 } from "react";
 
 const ThemeContext =
-  createContext();
+  createContext(null);
 
 export function ThemeProvider({
   children,
@@ -57,6 +57,7 @@ export function ThemeProvider({
   );
 }
 
+// eslint-disable-next-line react-refresh/only-export-components
 export function useTheme() {
   return useContext(
     ThemeContext

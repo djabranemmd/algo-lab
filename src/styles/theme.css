@@ -48,3 +48,77 @@ body.theme-light {
 
     --accent-color: #2563eb;
 }
+
+.theme-toggle-wrapper {
+    position: fixed;
+
+    top: 24px;
+    right: 24px;
+
+    z-index: 9999;
+}
+
+.theme-toggle {
+    border: none;
+    background: transparent;
+    cursor: pointer;
+}
+
+.toggle-track {
+    width: 70px;
+    height: 38px;
+
+    border-radius: 999px;
+
+    position: relative;
+
+    transition: 0.3s ease;
+
+    backdrop-filter: blur(20px);
+
+    border: 1px solid var(--border-color);
+}
+
+.toggle-track.dark {
+    background:
+        rgba(255, 255, 255, 0.08);
+}
+
+.toggle-track.light {
+    background:
+        rgba(255, 255, 255, 0.9);
+}
+
+.toggle-thumb {
+    width: 30px;
+    height: 30px;
+
+    border-radius: 50%;
+
+    position: absolute;
+
+    top: 3px;
+    left: 4px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: white;
+
+    transition: all 0.3s ease;
+
+    font-size: 14px;
+}
+
+.toggle-track.light .toggle-thumb {
+    left: 34px;
+}
+
+body.theme-light .toggle-thumb {
+    background: #ffffff;
+}
+
+body.theme-dark .toggle-thumb {
+    background: #111827;
+}
