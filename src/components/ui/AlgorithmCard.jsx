@@ -5,12 +5,11 @@ function AlgorithmCard({
   title,
   description,
   slug,
-  available = true,
-  externalPath,
 }) {
-  const destination =
-    externalPath ||
-    `/algorithm/${slug}`;
+  const target =
+    slug === "graph-lab"
+      ? "/graph-lab"
+      : `/algorithm/${slug}`;
 
   return (
     <motion.div
@@ -23,18 +22,12 @@ function AlgorithmCard({
 
       <p>{description}</p>
 
-      {available ? (
-        <Link
-          to={destination}
-          className="card-link"
-        >
-          Open →
-        </Link>
-      ) : (
-        <span className="disabled-link">
-          Coming Soon
-        </span>
-      )}
+      <Link
+        to={target}
+        className="card-link"
+      >
+        Open →
+      </Link>
     </motion.div>
   );
 }

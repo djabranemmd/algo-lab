@@ -9,7 +9,7 @@ import HomePage from "../pages/HomePage";
 import AlgorithmPage from "../pages/AlgorithmPage";
 import ComparisonPage from "../pages/ComparisonPage";
 import DashboardPage from "../pages/DashboardPage";
-
+import GraphLabPage from "../pages/GraphLabPage";
 function Router() {
   return (
     <Routes>
@@ -38,6 +38,11 @@ function Router() {
             <ComparisonPage />
           }
         />
+
+        <Route
+  path="/graph-lab"
+  element={<GraphLabPage />}
+/>
 
         <Route
   path="/dashboard"

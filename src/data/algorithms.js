@@ -55,4 +55,13 @@ export const algorithms = [
     description:
       "Compare sorting algorithms side by side.",
   },
+
+  {
+  title: "Graph Builder",
+  slug: "graph-lab",
+  category: "Interactive",
+  available: true,
+  description:
+    "Build your own graph and run BFS / DFS.",
+}
 ];
