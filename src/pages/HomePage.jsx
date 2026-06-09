@@ -5,6 +5,8 @@ import AlgorithmCard from "../components/ui/AlgorithmCard";
 
 import { algorithms } from "../data/algorithms";
 
+import { Link } from "react-router-dom";
+
 function HomePage() {
   const [search, setSearch] =
     useState("");
@@ -42,12 +44,21 @@ function HomePage() {
           AlgoLab
         </h1>
 
+        <div className="home-actions">
+  <Link
+    to="/dashboard"
+    className="dashboard-button"
+  >
+    Open Dashboard
+  </Link>
+        </div>
+
         <p className="hero-subtitle">
           Interactive algorithm visualizations
           designed to help you understand how
           algorithms think.
         </p>
-
+        
         <div className="stats-box">
           <span>
             Algorithms:{" "}

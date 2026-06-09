@@ -458,17 +458,26 @@ body {
 
   border-radius: 18px;
 
-  border: 1px solid rgba(255,
-      255,
-      255,
-      0.08);
+  border: 1px solid var(--border-color);
 
-  background: rgba(255,
-      255,
-      255,
-      0.05);
+  background: var(--card-bg);
 
-  color: white;
+  color: var(--text-color);
+
+  transition: all 0.25s ease;
+}
+
+.search-input::placeholder {
+  color: var(--text-secondary);
+}
+
+.search-input:focus {
+  outline: none;
+
+  border-color: var(--accent-color);
+
+  box-shadow: 0 0 0 4px
+    rgba(59, 130, 246, 0.15);
 }
 
 .stats-box {
@@ -899,4 +908,79 @@ body.theme-light .toggle-track {
 
 .glass-card:hover {
   transform: translateY(-4px);
+}
+
+.dashboard-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(auto-fit,
+      minmax(220px, 1fr));
+
+  gap: 20px;
+
+  margin-bottom: 40px;
+}
+
+.dashboard-grid .glass-card {
+  text-align: center;
+}
+
+.dashboard-grid h3 {
+  margin-bottom: 10px;
+}
+
+.dashboard-grid p {
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.dashboard-section {
+  margin-top: 30px;
+}
+
+.complexity-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-top: 20px;
+}
+
+.complexity-list div {
+  display: flex;
+  justify-content: space-between;
+
+  padding: 14px;
+
+  border-radius: 14px;
+
+  background: var(--input-bg);
+}
+
+.quick-links {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+
+.dashboard-link,
+.dashboard-button {
+  text-decoration: none;
+
+  padding: 12px 18px;
+
+  border-radius: 14px;
+
+  background: var(--button-bg);
+
+  color: var(--text-primary);
+
+  border: 1px solid var(--border-color);
+}
+
+.home-actions {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 40px;
 }
