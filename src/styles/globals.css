@@ -101,7 +101,7 @@ body {
   max-width: 700px;
   margin: 20px auto 70px;
   text-align: center;
-  color: rgba(255, 255, 255, .7);
+  color: var(--text-secondary);
   line-height: 1.8;
 }
 
@@ -247,38 +247,26 @@ body {
 .step-indicator {
   text-align: center;
 
-  color: rgba(255,
-      255,
-      255,
-      0.7);
+  color: var(--text-secondary);
 }
 
 .back-button {
   display: inline-flex;
-
   align-items: center;
-
   gap: 8px;
 
   margin-bottom: 40px;
-
   padding: 12px 18px;
 
   text-decoration: none;
 
-  color: white;
+  color: var(--text-primary);
 
   border-radius: 14px;
 
-  border: 1px solid rgba(255,
-      255,
-      255,
-      0.08);
+  border: 1px solid var(--border-color);
 
-  background: rgba(255,
-      255,
-      255,
-      0.05);
+  background: var(--card-bg);
 
   backdrop-filter: blur(20px);
 
@@ -287,11 +275,6 @@ body {
 
 .back-button:hover {
   transform: translateY(-2px);
-
-  background: rgba(255,
-      255,
-      255,
-      0.08);
 }
 
 .bar-comparing {
@@ -322,17 +305,10 @@ body {
 }
 
 .speed-control select {
-  background: rgba(255,
-      255,
-      255,
-      0.08);
-
-  border: none;
-
-  color: white;
-
+  background: var(--input-bg);
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
   padding: 8px 12px;
-
   border-radius: 10px;
 }
 
@@ -361,10 +337,7 @@ body {
 }
 
 .input-label {
-  color: rgba(255,
-      255,
-      255,
-      0.7);
+  color: var(--text-secondary);
 }
 
 .array-input {
@@ -375,8 +348,10 @@ body {
   color: var(--text-primary);
 
   border: 1px solid var(--border-color);
+}
 
-  color: white;
+.array-input::placeholder {
+  color: var(--text-secondary);
 }
 
 .generate-btn {
@@ -440,10 +415,11 @@ body {
 
   border-radius: 16px;
 
-  background: rgba(255,
-      255,
-      255,
-      0.08);
+  background: var(--card-bg);
+
+  border: 1px solid var(--border-color);
+
+  color: var(--text-primary);
 
   font-weight: 700;
 }
@@ -466,10 +442,8 @@ body {
 
   border-radius: 18px;
 
-  background: rgba(255,
-      255,
-      255,
-      0.05);
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
 }
 
 .search-input {
@@ -810,16 +784,6 @@ body {
   color: inherit;
 }
 
-body.theme-dark {
-  background: #060816;
-  color: white;
-}
-
-body.theme-light {
-  background: #f5f7fb;
-  color: #111827;
-}
-
 .theme-toggle-wrapper {
   position: fixed;
   top: 20px;
@@ -874,4 +838,65 @@ body.theme-light .toggle-track {
 
 .toggle-track:hover {
   transform: scale(1.05);
+}
+
+.graph-node {
+  background: var(--card-bg);
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
+}
+
+.graph-visited {
+  background: #3b82f6;
+  color: white;
+}
+
+.graph-current {
+  background: #22c55e;
+  color: white;
+}
+
+.graph-lines line {
+  stroke: var(--border-color);
+  stroke-width: 3;
+}
+
+.stats-panel div {
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
+}
+
+.array-input {
+  transition: all 0.3s ease;
+}
+
+.array-input:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+}
+
+.controls button,
+.generate-btn,
+.examples-wrapper button {
+  transition: all 0.25s ease;
+}
+
+.controls button:hover,
+.generate-btn:hover,
+.examples-wrapper button:hover {
+  transform: translateY(-2px);
+  background: var(--button-bg);
+}
+
+.glass-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  backdrop-filter: blur(20px);
+  transition: all 0.3s ease;
+}
+
+.glass-card:hover {
+  transform: translateY(-4px);
 }
