@@ -64,4 +64,5 @@ export const algorithms = [
   description:
     "Build your own graph and run BFS / DFS.",
 }
+  
 ];

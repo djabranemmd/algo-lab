@@ -10,6 +10,8 @@ import AlgorithmPage from "../pages/AlgorithmPage";
 import ComparisonPage from "../pages/ComparisonPage";
 import DashboardPage from "../pages/DashboardPage";
 import GraphLabPage from "../pages/GraphLabPage";
+
+
 function Router() {
   return (
     <Routes>

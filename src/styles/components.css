@@ -319,3 +319,42 @@
     transform:
         translate(-50%, -50%);
 }
+
+.edge-controls {
+    display: flex;
+
+    justify-content: center;
+
+    gap: 12px;
+
+    flex-wrap: wrap;
+
+    margin-bottom: 30px;
+}
+
+.edge-controls select {
+    padding: 12px 16px;
+
+    border-radius: 14px;
+
+    border: 1px solid var(--border-color);
+
+    background:
+        var(--card-bg);
+
+    color:
+        var(--text-primary);
+}
+
+.graph-builder-svg {
+    position: absolute;
+
+    inset: 0;
+}
+
+.graph-builder-svg line {
+    stroke:
+        var(--text-primary);
+
+    stroke-width: 3;
+}
