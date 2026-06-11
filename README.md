@@ -1,16 +1,249 @@
-# React + Vite
+# 🚀 Algorithm Visualizer
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+An interactive platform for learning and visualizing algorithms through animations, step-by-step execution, and custom graph exploration.
 
-Currently, two official plugins are available:
+Built with React, Vite, and modern UI principles to help students, developers, and computer science enthusiasts understand how algorithms work visually.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+---
 
-## React Compiler
+## ✨ Features
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### 🔢 Sorting Algorithms
 
-## Expanding the ESLint configuration
+* Bubble Sort Visualization
+* Selection Sort Visualization
+* Step-by-step execution
+* Playback controls
+* Adjustable animation speed
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+
+### 🔍 Searching Algorithms
+
+* Binary Search Visualization
+* Interactive traversal display
+* Execution explanation for every step
+
+---
+
+### 🌐 Graph Algorithms
+
+#### Breadth First Search (BFS)
+
+* Visual traversal
+* Queue visualization
+* Current node highlighting
+* Visited nodes tracking
+
+#### Depth First Search (DFS)
+
+* Visual traversal
+* Stack visualization
+* Recursive exploration animation
+* Step-by-step playback
+
+---
+
+### 🔬 Graph Builder Lab
+
+Create and explore your own graph interactively.
+
+Features:
+
+* Add Nodes
+* Create Edges
+* Move Nodes using Drag & Drop
+* Select Start Node
+* Run BFS
+* Run DFS
+* Queue Visualization
+* Stack Visualization
+* Traversal Tracking
+* Auto Save
+* Auto Load
+* Clear Graph
+* Playback Controls
+
+---
+
+### 📊 Algorithm Comparison
+
+Compare algorithms side by side and analyze their behavior.
+
+Current comparisons:
+
+* Bubble Sort vs Selection Sort
+
+---
+
+### 🎨 Modern UI
+
+* Responsive Design
+* Glassmorphism Components
+* Smooth Animations with Framer Motion
+* Dark Theme
+* Mobile Friendly
+
+---
+
+## 🛠️ Tech Stack
+
+### Frontend
+
+* React
+* Vite
+* React Router
+* Framer Motion
+
+### Styling
+
+* CSS Modules
+* Custom Design System
+
+### State Management
+
+* React Hooks
+
+### Deployment
+
+* Vercel
+
+---
+
+## 📁 Project Structure
+
+```bash
+src/
+│
+├── algorithms/
+├── components/
+├── pages/
+├── routes/
+├── hooks/
+├── data/
+├── layouts/
+├── styles/
+└── utils/
+```
+
+---
+
+## 🚀 Getting Started
+
+Clone the repository:
+
+```bash
+git clone https://github.com/yourusername/algorithm-visualizer.git
+```
+
+Install dependencies:
+
+```bash
+npm install
+```
+
+Run development server:
+
+```bash
+npm run dev
+```
+
+Build production version:
+
+```bash
+npm run build
+```
+
+---
+
+## 📈 Roadmap
+
+### Phase 1 ✅
+
+* Bubble Sort
+* Selection Sort
+* Binary Search
+* BFS
+* DFS
+* Comparison Page
+
+### Phase 2 ✅
+
+* Interactive Graph Builder
+* Custom BFS
+* Custom DFS
+* Drag & Drop Nodes
+* Graph Persistence
+
+### Phase 3 🚧
+
+* Dijkstra Shortest Path
+* Weighted Graphs
+* Edge Weight Editor
+* Path Highlighting
+
+### Phase 4 🚧
+
+* Merge Sort
+* Quick Sort
+* Heap Sort
+
+### Phase 5 🚧
+
+* AVL Tree Visualizer
+* Binary Search Tree Visualizer
+* Red Black Tree Visualizer
+
+### Phase 6 🚧
+
+* A* Pathfinding
+* Prim's Algorithm
+* Kruskal's Algorithm
+
+### Phase 7 🚧
+
+* User Accounts
+* Saved Projects
+* Graph Sharing
+* Export / Import Graphs
+
+---
+
+## 🎯 Educational Goals
+
+This project aims to make algorithms easier to understand through visual learning and interactive experimentation.
+
+Users can:
+
+* Build their own graphs
+* Explore traversal algorithms
+* Compare algorithm behavior
+* Learn data structures visually
+
+---
+
+## 🤝 Contributing
+
+Contributions, issues, and feature requests are welcome.
+
+Feel free to fork the project and submit a pull request.
+
+---
+
+## ⭐ Support
+
+If you find this project useful:
+
+* Star the repository
+* Share it with friends
+* Suggest new algorithms
+
+---
+
+## 📜 License
+
+MIT License
+
+---
+
+Made with ❤️ for Computer Science Students
