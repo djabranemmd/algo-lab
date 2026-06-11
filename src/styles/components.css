@@ -358,3 +358,13 @@
 
     stroke-width: 3;
 }
+
+.graph-builder-node {
+    cursor: grab;
+    user-select: none;
+    transition: transform .2s ease;
+}
+
+.graph-builder-node:active {
+    cursor: grabbing;
+}

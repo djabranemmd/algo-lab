@@ -1,15 +1,47 @@
-import { useState } from "react";
+import {
+  useMemo,
+  useState,
+} from "react";
+
+import usePlayback from "../hooks/usePlayback";
+
+import PlaybackControls from "../components/controls/PlaybackControls";
+
+import {
+  generateCustomBFSSteps,
+} from "../algorithms/customBFS";
+
+import {
+  generateCustomDFSSteps,
+} from "../algorithms/customDFS";
 
 function GraphLabPage() {
-  const [nodes, setNodes] = useState([]);
+  const [nodes, setNodes] =
+    useState([]);
 
-  const [edges, setEdges] = useState([]);
+  const [edges, setEdges] =
+    useState([]);
 
   const [fromNode, setFromNode] =
     useState("");
 
   const [toNode, setToNode] =
     useState("");
+
+  const [
+    startNode,
+    setStartNode,
+  ] = useState("");
+
+  const [
+    traversalStarted,
+    setTraversalStarted,
+  ] = useState(false);
+
+  const [
+    mode,
+    setMode,
+  ] = useState("bfs");
 
   const addNode = () => {
     const nextLetter =
@@ -34,6 +66,24 @@ function GraphLabPage() {
             150,
       },
     ]);
+  };
+
+  const moveNode = (
+    nodeId,
+    x,
+    y
+  ) => {
+    setNodes((prev) =>
+      prev.map((node) =>
+        node.id === nodeId
+          ? {
+              ...node,
+              x,
+              y,
+            }
+          : node
+      )
+    );
   };
 
   const addEdge = () => {
@@ -69,21 +119,73 @@ function GraphLabPage() {
         to: toNode,
       },
     ]);
-
-    setToNode("");
   };
+
+  const steps =
+    useMemo(() => {
+      if (!traversalStarted) {
+        return [];
+      }
+
+      if (mode === "bfs") {
+        return generateCustomBFSSteps(
+          nodes,
+          edges,
+          startNode
+        );
+      }
+
+      return generateCustomDFSSteps(
+        nodes,
+        edges,
+        startNode
+      );
+    }, [
+      traversalStarted,
+      nodes,
+      edges,
+      startNode,
+      mode,
+    ]);
+
+  const playback =
+    usePlayback(
+      steps.length || 1
+    );
+
+  const step =
+    steps[
+      playback.currentStep
+    ] || {
+      current: null,
+      visited: [],
+      traversal: [],
+      queue: [],
+      stack: [],
+      description:
+        "Build a graph and start traversal",
+    };
+
+  const runTraversal =
+    () => {
+      if (!startNode) {
+        return;
+      }
+
+      setTraversalStarted(
+        true
+      );
+
+      setTimeout(() => {
+        playback.reset();
+      }, 0);
+    };
 
   return (
     <section className="container-page">
       <h1 className="algorithm-title">
         Graph Builder
       </h1>
-
-      <p className="hero-subtitle">
-        Create your own graph and
-        later run BFS and DFS
-        visually.
-      </p>
 
       <div className="graph-builder-actions">
         <button
@@ -95,58 +197,110 @@ function GraphLabPage() {
       </div>
 
       {nodes.length >= 2 && (
-        <div className="edge-controls">
-          <select
-            value={fromNode}
-            onChange={(e) =>
-              setFromNode(
-                e.target.value
-              )
-            }
-          >
-            <option value="">
-              From Node
-            </option>
-
-            {nodes.map((node) => (
-              <option
-                key={node.id}
-                value={node.id}
-              >
-                {node.id}
+        <>
+          <div className="edge-controls">
+            <select
+              value={fromNode}
+              onChange={(e) =>
+                setFromNode(
+                  e.target.value
+                )
+              }
+            >
+              <option value="">
+                From
               </option>
-            ))}
-          </select>
 
-          <select
-            value={toNode}
-            onChange={(e) =>
-              setToNode(
-                e.target.value
-              )
-            }
-          >
-            <option value="">
-              To Node
-            </option>
+              {nodes.map(
+                (node) => (
+                  <option
+                    key={node.id}
+                    value={node.id}
+                  >
+                    {node.id}
+                  </option>
+                )
+              )}
+            </select>
 
-            {nodes.map((node) => (
-              <option
-                key={node.id}
-                value={node.id}
-              >
-                {node.id}
+            <select
+              value={toNode}
+              onChange={(e) =>
+                setToNode(
+                  e.target.value
+                )
+              }
+            >
+              <option value="">
+                To
               </option>
-            ))}
-          </select>
 
-          <button
-            className="generate-btn"
-            onClick={addEdge}
-          >
-            Add Edge
-          </button>
-        </div>
+              {nodes.map(
+                (node) => (
+                  <option
+                    key={node.id}
+                    value={node.id}
+                  >
+                    {node.id}
+                  </option>
+                )
+              )}
+            </select>
+
+            <button
+              className="generate-btn"
+              onClick={addEdge}
+            >
+              Add Edge
+            </button>
+          </div>
+
+          <div className="edge-controls">
+            <select
+              value={startNode}
+              onChange={(e) =>
+                setStartNode(
+                  e.target.value
+                )
+              }
+            >
+              <option value="">
+                Start Node
+              </option>
+
+              {nodes.map(
+                (node) => (
+                  <option
+                    key={node.id}
+                    value={node.id}
+                  >
+                    {node.id}
+                  </option>
+                )
+              )}
+            </select>
+
+            <button
+              className="generate-btn"
+              onClick={() => {
+                setMode("bfs");
+                runTraversal();
+              }}
+            >
+              Run BFS
+            </button>
+
+            <button
+              className="generate-btn"
+              onClick={() => {
+                setMode("dfs");
+                runTraversal();
+              }}
+            >
+              Run DFS
+            </button>
+          </div>
+        </>
       )}
 
       <div className="graph-builder-canvas">
@@ -156,7 +310,10 @@ function GraphLabPage() {
           height="100%"
         >
           {edges.map(
-            (edge, index) => {
+            (
+              edge,
+              index
+            ) => {
               const from =
                 nodes.find(
                   (n) =>
@@ -167,7 +324,8 @@ function GraphLabPage() {
               const to =
                 nodes.find(
                   (n) =>
-                    n.id === edge.to
+                    n.id ===
+                    edge.to
                 );
 
               if (
@@ -190,19 +348,130 @@ function GraphLabPage() {
           )}
         </svg>
 
-        {nodes.map((node) => (
-          <div
-            key={node.id}
-            className="graph-builder-node"
-            style={{
-              left: node.x,
-              top: node.y,
-            }}
-          >
-            {node.id}
-          </div>
-        ))}
+        {nodes.map((node) => {
+          let className =
+            "graph-builder-node";
+
+          if (
+            step.visited.includes(
+              node.id
+            )
+          ) {
+            className +=
+              " graph-visited";
+          }
+
+          if (
+            step.current ===
+            node.id
+          ) {
+            className +=
+              " graph-current";
+          }
+
+          return (
+            <div
+              key={node.id}
+              className={
+                className
+              }
+              draggable
+              onDrag={(e) => {
+                if (
+                  e.clientX ===
+                    0 ||
+                  e.clientY ===
+                    0
+                ) {
+                  return;
+                }
+
+                const rect =
+                  e.currentTarget.parentElement.getBoundingClientRect();
+
+                moveNode(
+                  node.id,
+                  e.clientX -
+                    rect.left,
+                  e.clientY -
+                    rect.top
+                );
+              }}
+              style={{
+                left:
+                  node.x,
+                top:
+                  node.y,
+              }}
+            >
+              {node.id}
+            </div>
+          );
+        })}
       </div>
+
+      {steps.length > 0 && (
+        <>
+          <div className="queue-box">
+            {mode === "bfs"
+              ? `Queue: ${
+                  step.queue?.length
+                    ? step.queue.join(
+                        " → "
+                      )
+                    : "Empty"
+                }`
+              : `Stack: ${
+                  step.stack?.length
+                    ? step.stack.join(
+                        " → "
+                      )
+                    : "Empty"
+                }`}
+          </div>
+
+          <div className="traversal-box">
+            {mode.toUpperCase()}
+            {" "}
+            Traversal:
+            {" "}
+            {step.traversal.join(
+              " → "
+            )}
+          </div>
+
+          <PlaybackControls
+            isPlaying={
+              playback.isPlaying
+            }
+            onPlay={
+              playback.play
+            }
+            onPause={
+              playback.pause
+            }
+            onNext={
+              playback.next
+            }
+            onPrev={
+              playback.prev
+            }
+            onReset={
+              playback.reset
+            }
+            speed={
+              playback.speed
+            }
+            setSpeed={
+              playback.setSpeed
+            }
+          />
+
+          <div className="description-box">
+            {step.description}
+          </div>
+        </>
+      )}
     </section>
   );
 }
