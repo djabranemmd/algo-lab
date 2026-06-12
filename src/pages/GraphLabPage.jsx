@@ -61,6 +61,7 @@ function GraphLabPage() {
   const graph =
     JSON.parse(savedGraph);
 
+  // eslint-disable-next-line react-hooks/set-state-in-effect
   setNodes(graph.nodes || []);
 
   setEdges(graph.edges || []);
@@ -182,6 +183,7 @@ const deleteEdge = (index) => {
   );
 };
 
+// eslint-disable-next-line no-unused-vars
 const clearGraph = () => {
   setNodes([]);
   setEdges([]);
@@ -260,9 +262,6 @@ const clearGraph = () => {
 
   return (
     <section className="container-page">
-      <h1 className="algorithm-title">
-        Graph Builder
-      </h1>
 
 <div className="page-header">
   <Link

@@ -209,6 +209,53 @@ npm run build
 
 ---
 
+## 🖥️ Screenshots
+
+### 🌞 Light Mode
+
+![Light Mode](public/screenshots/Light%20Mode.png)
+
+
+### 🌙 Dark Mode
+
+![Dark Mode](public/screenshots/Dark%20Mode.png)
+
+
+### 🔄 Bubble Sort Visualization
+
+![Bubble Sort](public/screenshots/Bubble%20Sort.png)
+
+
+### 🌐 BFS Visualization
+
+![BFS algorithme](public/screenshots/BFS.png)
+
+
+### 🕸️ Graph Builder
+
+![Graph Builder](public/screenshots/Graf%20Build.png)
+
+---
+
+## 🚀 Algorithm Animations
+
+
+### Bubble Sort
+
+![Bubble Sort Demo](public/gifs/BubbleSort.gif)
+
+
+### BFS Traversal
+
+![BFS Demo](public/gifs/BFS.gif)
+
+
+### Graph Builder
+
+![Graph Builder Demo](public/gifs/GRAFBld.gif)
+
+---
+
 ## 🎯 Educational Goals
 
 This project aims to make algorithms easier to understand through visual learning and interactive experimentation.
