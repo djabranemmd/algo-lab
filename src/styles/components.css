@@ -477,3 +477,32 @@
 
     margin-bottom: 30px;
 }
+
+.graph-builder-svg text {
+    fill: var(--text-primary);
+
+    font-size: 18px;
+
+    font-weight: 700;
+}
+
+
+.graph-visited {
+    background:
+        #22c55e;
+}
+
+
+.graph-current {
+    background:
+        #facc15;
+
+    color:
+        black;
+}
+
+
+.graph-path {
+    background:
+        #3b82f6;
+}

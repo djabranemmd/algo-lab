@@ -1,4 +1,8 @@
-import { Link, useParams } from "react-router-dom";
+import {
+  Link,
+  useParams,
+} from "react-router-dom";
+
 
 import BubbleSortVisualizer from "../components/algorithm/BubbleSortVisualizer";
 import SelectionSortVisualizer from "../components/algorithm/SelectionSortVisualizer";
@@ -6,74 +10,141 @@ import BinarySearchVisualizer from "../components/algorithm/BinarySearchVisualiz
 import BFSVisualizer from "../components/algorithm/BFSVisualizer";
 import DFSVisualizer from "../components/algorithm/DFSVisualizer";
 
+import DijkstraPage from "./DijkstraPage";
+
+
 import AlgorithmInfo from "../components/algorithm/AlgorithmInfo";
 
-import { algorithmDetails } from "../data/algorithmDetails";
+import {
+  algorithmDetails,
+} from "../data/algorithmDetails";
+
 
 function AlgorithmPage() {
-  const { slug } = useParams();
+
+  const {
+    slug
+  } = useParams();
+
 
   const algorithm =
     algorithmDetails[slug];
 
+
+  const supportedAlgorithms = [
+    "bubble-sort",
+    "selection-sort",
+    "binary-search",
+    "bfs",
+    "dfs",
+    "dijkstra",
+  ];
+
+
   return (
-    <section className="container-page">
-      <Link
-        to="/"
-        className="back-button"
-      >
-        ← Back to Home
-      </Link>
 
-      {algorithm && (
-        <>
-          <h1 className="algorithm-title">
-            {algorithm.title}
-          </h1>
+<section className="container-page">
 
-          <AlgorithmInfo
-            data={algorithm}
-          />
-        </>
-      )}
 
-      {slug === "bubble-sort" && (
-        <BubbleSortVisualizer />
-      )}
+<Link
+to="/"
+className="back-button"
+>
+← Back to Home
+</Link>
 
-      {slug ===
-        "selection-sort" && (
-        <SelectionSortVisualizer />
-      )}
 
-      {slug ===
-        "binary-search" && (
-        <BinarySearchVisualizer />
-      )}
 
-      {slug === "bfs" && (
-        <BFSVisualizer />
-      )}
+{
+algorithm && (
+<>
+<h1 className="algorithm-title">
+{algorithm.title}
+</h1>
 
-      {slug === "dfs" && (
-        <DFSVisualizer />
-      )}
 
-      {![
-        "bubble-sort",
-        "selection-sort",
-        "binary-search",
-        "bfs",
-        "dfs",
-      ].includes(slug) && (
-        <div className="glass-card">
-          <h2>
-            Coming Soon
-          </h2>
-        </div>
-      )}
-    </section>
-  );
+<AlgorithmInfo
+data={algorithm}
+/>
+
+</>
+)
 }
+
+
+
+
+{
+slug === "bubble-sort" && (
+<BubbleSortVisualizer />
+)
+}
+
+
+
+{
+slug === "selection-sort" && (
+<SelectionSortVisualizer />
+)
+}
+
+
+
+{
+slug === "binary-search" && (
+<BinarySearchVisualizer />
+)
+}
+
+
+
+{
+slug === "bfs" && (
+<BFSVisualizer />
+)
+}
+
+
+
+{
+slug === "dfs" && (
+<DFSVisualizer />
+)
+}
+
+
+
+{
+slug === "dijkstra" && (
+<DijkstraPage />
+)
+}
+
+
+
+
+{
+!supportedAlgorithms.includes(slug)
+&&
+(
+<div className="glass-card">
+
+<h2>
+Coming Soon
+</h2>
+
+</div>
+)
+
+}
+
+
+
+</section>
+
+  );
+
+}
+
 
 export default AlgorithmPage;

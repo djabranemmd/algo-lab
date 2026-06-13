@@ -4,8 +4,7 @@ export const algorithms = [
     slug: "bubble-sort",
     category: "Sorting",
     available: true,
-    description:
-      "Visualize adjacent comparisons and swaps.",
+    description: "Visualize adjacent comparisons and swaps.",
   },
 
   {
@@ -13,8 +12,7 @@ export const algorithms = [
     slug: "selection-sort",
     category: "Sorting",
     available: true,
-    description:
-      "Discover how minimum elements are selected.",
+    description: "Discover how minimum elements are selected.",
   },
 
   {
@@ -22,8 +20,7 @@ export const algorithms = [
     slug: "binary-search",
     category: "Searching",
     available: true,
-    description:
-      "Learn logarithmic search visually.",
+    description: "Learn logarithmic search visually.",
   },
 
   {
@@ -31,8 +28,7 @@ export const algorithms = [
     slug: "bfs",
     category: "Graph",
     available: true,
-    description:
-      "Breadth First Search traversal.",
+    description: "Breadth First Search traversal.",
   },
 
   {
@@ -40,29 +36,31 @@ export const algorithms = [
     slug: "dfs",
     category: "Graph",
     available: true,
-    description:
-      "Depth First Search traversal.",
+    description: "Depth First Search traversal.",
   },
 
   {
-    title:
-      "Algorithm Comparison",
+    title: "Algorithm Comparison",
     slug: "comparison",
     category: "Analysis",
     available: true,
-    externalPath:
-      "/comparison",
-    description:
-      "Compare sorting algorithms side by side.",
+    externalPath: "/comparison",
+    description: "Compare sorting algorithms side by side.",
   },
 
   {
-  title: "Graph Builder",
-  slug: "graph-lab",
-  category: "Interactive",
-  available: true,
-  description:
-    "Build your own graph and run BFS / DFS.",
-}
-  
+    title: "Graph Builder",
+    slug: "graph-lab",
+    category: "Interactive",
+    available: true,
+    description: "Build your own graph and run BFS / DFS.",
+  },
+
+  {
+    title: "Dijkstra Shortest Path",
+    slug: "dijkstra",
+    category: "Graph",
+    available: true,
+    description: "Find shortest paths in weighted graphs visually.",
+  },
 ];
