@@ -2,7 +2,7 @@ export function generateCustomDijkstraSteps(
   nodes,
   edges,
   startNode,
-  targetNode
+  endNode
 ) {
   if (
     !startNode ||
@@ -16,6 +16,7 @@ export function generateCustomDijkstraSteps(
   nodes.forEach((node) => {
     graph[node.id] = [];
   });
+
 
   edges.forEach((edge) => {
     graph[edge.from].push({
@@ -36,7 +37,6 @@ export function generateCustomDijkstraSteps(
 
   const visited = new Set();
 
-  const steps = [];
 
   nodes.forEach((node) => {
     distances[node.id] = Infinity;
@@ -47,6 +47,9 @@ export function generateCustomDijkstraSteps(
   distances[startNode] = 0;
 
 
+  const steps = [];
+
+
   steps.push({
     current: null,
     visited: [],
@@ -55,7 +58,7 @@ export function generateCustomDijkstraSteps(
     },
     path: [],
     description:
-      `Starting Dijkstra from node ${startNode}`,
+      "Starting Dijkstra algorithm",
   });
 
 
@@ -65,32 +68,30 @@ export function generateCustomDijkstraSteps(
   ) {
 
     let current = null;
-
-    let smallestDistance =
+    let smallest =
       Infinity;
 
 
-    Object.keys(distances).forEach(
-      (node) => {
+    Object.keys(distances)
+      .forEach((node) => {
 
         if (
           !visited.has(node) &&
           distances[node] <
-            smallestDistance
+            smallest
         ) {
-          smallestDistance =
+          smallest =
             distances[node];
 
-          current = node;
+          current =
+            node;
         }
 
-      }
-    );
+      });
 
 
-    if (current === null) {
+    if (current === null)
       break;
-    }
 
 
     visited.add(current);
@@ -101,12 +102,12 @@ export function generateCustomDijkstraSteps(
       visited: [
         ...visited,
       ],
-      distances: {
+      distances:{
         ...distances,
       },
-      path: [],
+      path:[],
       description:
-        `Selecting node ${current} with shortest distance`,
+        `Selected node ${current} with smallest distance`,
     });
 
 
@@ -117,9 +118,8 @@ export function generateCustomDijkstraSteps(
           visited.has(
             neighbor.node
           )
-        ) {
+        )
           return;
-        }
 
 
         const newDistance =
@@ -132,77 +132,70 @@ export function generateCustomDijkstraSteps(
           distances[neighbor.node]
         ) {
 
-          distances[neighbor.node] =
+          distances[
+            neighbor.node
+          ] =
             newDistance;
 
 
-          previous[neighbor.node] =
+          previous[
+            neighbor.node
+          ] =
             current;
 
 
           steps.push({
             current,
-            visited: [
+            visited:[
               ...visited,
             ],
-            distances: {
+            distances:{
               ...distances,
             },
-            path: [],
+            path:[],
             description:
-              `Updated distance of ${neighbor.node} to ${newDistance}`,
+              `Updated distance of ${neighbor.node}`,
           });
 
         }
 
       }
     );
-
-
-    if (
-      current === targetNode
-    ) {
-      break;
-    }
   }
 
 
   let path = [];
 
-  if (targetNode) {
+  if (endNode) {
 
     let current =
-      targetNode;
+      endNode;
 
 
-    while (current) {
+    while(current){
 
-      path.unshift(current);
+      path.unshift(
+        current
+      );
 
       current =
         previous[current];
     }
 
-
-    if (
-      path[0] !== startNode
-    ) {
-      path = [];
-    }
   }
 
 
   steps.push({
-    current: null,
-    visited: [
+    current:null,
+    visited:[
       ...visited,
     ],
-    distances: {
+    distances:{
       ...distances,
     },
     path,
     description:
-      path.length
+      endNode
         ? `Shortest path found: ${path.join(
             " → "
           )}`

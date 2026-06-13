@@ -506,3 +506,9 @@
     background:
         #3b82f6;
 }
+
+.edge-weight {
+    fill: var(--text-primary);
+    font-size: 18px;
+    font-weight: 700;
+}

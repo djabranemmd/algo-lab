@@ -32,6 +32,11 @@ function GraphLabPage() {
 
   const [toNode, setToNode] =
     useState("");
+  
+  const [
+  edgeWeight,
+  setEdgeWeight,
+] = useState(1);
 
   const [
     startNode,
@@ -147,12 +152,13 @@ function GraphLabPage() {
     }
 
     setEdges((prev) => [
-      ...prev,
-      {
-        from: fromNode,
-        to: toNode,
-      },
-    ]);
+  ...prev,
+  {
+    from: fromNode,
+    to: toNode,
+    weight: Number(edgeWeight),
+  },
+]);
   };
 
   const deleteNode = (nodeId) => {
@@ -397,6 +403,18 @@ const clearGraph = () => {
               )}
             </select>
 
+            <input
+  type="number"
+  min="1"
+  value={edgeWeight}
+  onChange={(e) =>
+    setEdgeWeight(
+      e.target.value
+    )
+  }
+  placeholder="Weight"
+/>
+
             <button
               className="generate-btn"
               onClick={addEdge}
@@ -486,14 +504,27 @@ const clearGraph = () => {
               }
 
               return (
-                <line
-                  key={index}
-                  x1={from.x}
-                  y1={from.y}
-                  x2={to.x}
-                  y2={to.y}
-                />
-              );
+  <g key={index}>
+    <line
+      x1={from.x}
+      y1={from.y}
+      x2={to.x}
+      y2={to.y}
+    />
+
+    <text
+      x={
+        (from.x + to.x) / 2
+      }
+      y={
+        (from.y + to.y) / 2
+      }
+      className="edge-weight"
+    >
+      {edge.weight}
+    </text>
+  </g>
+);
             }
           )}
         </svg>
