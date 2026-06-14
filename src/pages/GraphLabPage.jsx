@@ -20,6 +20,10 @@ import {
   generateCustomDFSSteps,
 } from "../algorithms/customDFS";
 
+import {
+  generateCustomDijkstraSteps,
+} from "../algorithms/customDijkstra";
+
 function GraphLabPage() {
   const [nodes, setNodes] =
     useState([]);
@@ -42,6 +46,11 @@ function GraphLabPage() {
     startNode,
     setStartNode,
   ] = useState("");
+
+  const [
+  endNode,
+  setEndNode,
+] = useState("");
 
   const [
     traversalStarted,
@@ -213,12 +222,27 @@ const clearGraph = () => {
       }
 
       if (mode === "bfs") {
-        return generateCustomBFSSteps(
-          nodes,
-          edges,
-          startNode
-        );
-      }
+  return generateCustomBFSSteps(
+    nodes,
+    edges,
+    startNode
+  );
+}
+
+if (mode === "dijkstra") {
+  return generateCustomDijkstraSteps(
+    nodes,
+    edges,
+    startNode,
+    endNode
+  );
+}
+
+return generateCustomDFSSteps(
+  nodes,
+  edges,
+  startNode
+);
 
       return generateCustomDFSSteps(
         nodes,
@@ -247,6 +271,8 @@ const clearGraph = () => {
       traversal: [],
       queue: [],
       stack: [],
+      distances: {},
+path: [],
       description:
         "Build a graph and start traversal",
     };
@@ -467,6 +493,17 @@ const clearGraph = () => {
             >
               Run DFS
             </button>
+
+            <button
+  className="generate-btn"
+  onClick={() => {
+    setMode("dijkstra");
+    runTraversal();
+  }}
+>
+  Run Dijkstra
+            </button>
+            
           </div>
         </>
       )}
@@ -629,22 +666,64 @@ const clearGraph = () => {
       {steps.length > 0 && (
         <>
           <div className="queue-box">
-            {mode === "bfs"
-              ? `Queue: ${
-                  step.queue?.length
-                    ? step.queue.join(
-                        " → "
-                      )
-                    : "Empty"
-                }`
-              : `Stack: ${
-                  step.stack?.length
-                    ? step.stack.join(
-                        " → "
-                      )
-                    : "Empty"
-                }`}
-          </div>
+
+{
+mode === "bfs" &&
+(
+<>
+Queue:{" "}
+{
+step.queue?.length
+?
+step.queue.join(" → ")
+:
+"Empty"
+}
+</>
+)
+}
+
+
+{
+mode === "dfs" &&
+(
+<>
+Stack:{" "}
+{
+step.stack?.length
+?
+step.stack.join(" → ")
+:
+"Empty"
+}
+</>
+)
+}
+
+
+{
+mode === "dijkstra" &&
+(
+<>
+Distances:
+{" "}
+
+{
+Object.entries(
+step.distances || {}
+)
+.map(
+([node, distance]) =>
+`${node}:${distance}`
+)
+.join(" | ")
+}
+
+</>
+)
+}
+
+</div>
 
           <div className="traversal-box">
             {mode.toUpperCase()}
@@ -685,6 +764,23 @@ const clearGraph = () => {
 
           <div className="description-box">
             {step.description}
+            {
+mode === "dijkstra" &&
+step.path?.length > 0 &&
+(
+<div className="traversal-box">
+
+Shortest Path:
+{" "}
+{
+step.path.join(
+" → "
+)
+}
+
+</div>
+)
+}
           </div>
         </>
       )}
