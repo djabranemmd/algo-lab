@@ -49,6 +49,7 @@ function GraphLabPage() {
 
   const [
   endNode,
+  // eslint-disable-next-line no-unused-vars
   setEndNode,
 ] = useState("");
 
@@ -238,24 +239,12 @@ if (mode === "dijkstra") {
   );
 }
 
-return generateCustomDFSSteps(
-  nodes,
-  edges,
-  startNode
-);
-
       return generateCustomDFSSteps(
         nodes,
         edges,
         startNode
       );
-    }, [
-      traversalStarted,
-      nodes,
-      edges,
-      startNode,
-      mode,
-    ]);
+    }, [traversalStarted, mode, nodes, edges, startNode, endNode]);
 
   const playback =
     usePlayback(
